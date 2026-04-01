@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-04-01T22:58:34.080057+00:00",
+  "feature_count": 45,
+  "sample_rows": null,
+  "split_sizes": {
+    "train": 92080,
+    "validation": 12816,
+    "test": 12110
+  },
+  "metrics": {
+    "validation": {
+      "rmse": 117184.83829775496,
+      "mae": 76372.07539097717,
+      "mape": 11.442754376876962,
+      "mdape": 9.036980239491967,
+      "coverage": 0.8063358302122348,
+      "mean_interval_width": 260047.92417142887,
+      "pinball_loss_p10": 18266.41107161793,
+      "pinball_loss_p50": 38186.03769548859,
+      "pinball_loss_p90": 18448.50048682252
+    },
+    "test": {
+      "rmse": 130584.27666603624,
+      "mae": 89579.253215366,
+      "mape": 13.046764894776642,
+      "mdape": 11.248601483258009,
+      "coverage": 0.7430222956234517,
+      "mean_interval_width": 261069.74103926832,
+      "pinball_loss_p10": 19956.152260070055,
+      "pinball_loss_p50": 44789.626607683,
+      "pinball_loss_p90": 22278.409560788397
+    }
+  }
+}

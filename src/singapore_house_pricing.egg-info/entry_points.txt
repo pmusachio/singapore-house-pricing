@@ -1,0 +1,2 @@
+[console_scripts]
+singapore-house-pricing = singapore_house_pricing.cli:main

@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-04-01T22:58:34.080200+00:00",
+  "config": {
+    "paths": {
+      "project_dir": "/Users/pmusachio/REPOS/singapore-house-pricing",
+      "raw_transactions": "/Users/pmusachio/REPOS/singapore-house-pricing/data/raw/sg-resale-flat-prices-2017-onwards.csv",
+      "raw_price_index": "/Users/pmusachio/REPOS/singapore-house-pricing/data/raw/sg_price_index.csv",
+      "processed_dataset": "/Users/pmusachio/REPOS/singapore-house-pricing/data/processed/sg_resale_flat_prices_engineered.csv",
+      "features_path": "/Users/pmusachio/REPOS/singapore-house-pricing/data/processed/features_list.json",
+      "models_dir": "/Users/pmusachio/REPOS/singapore-house-pricing/models",
+      "reports_dir": "/Users/pmusachio/REPOS/singapore-house-pricing/reports",
+      "figures_dir": "/Users/pmusachio/REPOS/singapore-house-pricing/reports/figures",
+      "metrics_path": "/Users/pmusachio/REPOS/singapore-house-pricing/reports/metrics.json",
+      "predictions_path": "/Users/pmusachio/REPOS/singapore-house-pricing/reports/predictions.csv",
+      "summary_path": "/Users/pmusachio/REPOS/singapore-house-pricing/reports/project_summary.md",
+      "model_metadata_path": "/Users/pmusachio/REPOS/singapore-house-pricing/models/model_metadata.json"
+    },
+    "split": {
+      "train_end": "2023-07-01",
+      "validation_end": "2024-01-01"
+    },
+    "features": {
+      "minimum_transaction_month": "2020-01-01",
+      "rolling_windows": [
+        1,
+        3,
+        6
+      ],
+      "rolling_group_columns": [
+        "town",
+        "town_street"
+      ],
+      "categorical_features": [
+        "town",
+        "flat_type",
+        "storey_range",
+        "flat_model"
+      ]
+    },
+    "model": {
+      "quantiles": [
+        0.1,
+        0.5,
+        0.9
+      ],
+      "n_estimators": 40,
+      "learning_rate": 0.05,
+      "max_depth": 3,
+      "min_samples_leaf": 20,
+      "subsample": 0.8,
+      "random_state": 42
+    }
+  },
+  "features": [
+    "town",
+    "flat_type",
+    "storey_range",
+    "flat_model",
+    "floor_area_sqm",
+    "lease_commence_date",
+    "remaining_lease_years",
+    "lease_age",
+    "month_num",
+    "quarter",
+    "transaction_year",
+    "storey_midpoint",
+    "flat_type_room_count",
+    "price_index",
+    "inflation_adjustment_factor",
+    "prior_1_town_mean_corrected_price_per_sqm",
+    "prior_1_town_std_corrected_price_per_sqm",
+    "prior_1_town_max_corrected_price_per_sqm",
+    "prior_1_town_min_corrected_price_per_sqm",
+    "prior_1_town_count_corrected_price_per_sqm",
+    "prior_3_town_mean_corrected_price_per_sqm",
+    "prior_3_town_std_corrected_price_per_sqm",
+    "prior_3_town_max_corrected_price_per_sqm",
+    "prior_3_town_min_corrected_price_per_sqm",
+    "prior_3_town_count_corrected_price_per_sqm",
+    "prior_6_town_mean_corrected_price_per_sqm",
+    "prior_6_town_std_corrected_price_per_sqm",
+    "prior_6_town_max_corrected_price_per_sqm",
+    "prior_6_town_min_corrected_price_per_sqm",
+    "prior_6_town_count_corrected_price_per_sqm",
+    "prior_1_town_street_mean_corrected_price_per_sqm",
+    "prior_1_town_street_std_corrected_price_per_sqm",
+    "prior_1_town_street_max_corrected_price_per_sqm",
+    "prior_1_town_street_min_corrected_price_per_sqm",
+    "prior_1_town_street_count_corrected_price_per_sqm",
+    "prior_3_town_street_mean_corrected_price_per_sqm",
+    "prior_3_town_street_std_corrected_price_per_sqm",
+    "prior_3_town_street_max_corrected_price_per_sqm",
+    "prior_3_town_street_min_corrected_price_per_sqm",
+    "prior_3_town_street_count_corrected_price_per_sqm",
+    "prior_6_town_street_mean_corrected_price_per_sqm",
+    "prior_6_town_street_std_corrected_price_per_sqm",
+    "prior_6_town_street_max_corrected_price_per_sqm",
+    "prior_6_town_street_min_corrected_price_per_sqm",
+    "prior_6_town_street_count_corrected_price_per_sqm"
+  ],
+  "sample_rows": null,
+  "model_files": {
+    "q10": "/Users/pmusachio/REPOS/singapore-house-pricing/models/quantile_10.joblib",
+    "q50": "/Users/pmusachio/REPOS/singapore-house-pricing/models/quantile_50.joblib",
+    "q90": "/Users/pmusachio/REPOS/singapore-house-pricing/models/quantile_90.joblib"
+  },
+  "split_sizes": {
+    "train": 92080,
+    "validation": 12816,
+    "test": 12110
+  }
+}
