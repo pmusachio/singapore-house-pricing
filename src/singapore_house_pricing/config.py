@@ -70,14 +70,19 @@ class ProjectConfig:
     model: ModelConfig = field(default_factory=ModelConfig)
 
     def to_serialisable_dict(self) -> dict[str, Any]:
-        return _serialise(asdict(self))
+        return _serialise(asdict(self), project_dir=self.paths.project_dir)
 
 
-def _serialise(value: Any) -> Any:
+def _serialise(value: Any, project_dir: Path | None = None) -> Any:
     if isinstance(value, Path):
+        if project_dir is not None:
+            try:
+                return str(value.relative_to(project_dir))
+            except ValueError:
+                pass
         return str(value)
     if isinstance(value, dict):
-        return {key: _serialise(item) for key, item in value.items()}
+        return {key: _serialise(item, project_dir=project_dir) for key, item in value.items()}
     if isinstance(value, (list, tuple)):
-        return [_serialise(item) for item in value]
+        return [_serialise(item, project_dir=project_dir) for item in value]
     return value

@@ -1,51 +1,72 @@
 # Singapore House Pricing
 
-Production-grade data science case study for probabilistic valuation of Singapore HDB resale flats.
+End-to-end machine learning project for estimating fair resale price ranges for Singapore HDB flats.
 
-## Business goal
+## Business question
 
-Estimate a fair resale price range for public housing units in Singapore using property characteristics,
-local transaction history, and a macro housing price index. The model produces lower, median, and upper
-price estimates instead of a single point forecast.
+How can we support buyers, sellers, and analysts with a realistic price range instead of a single price point?
 
-## Dataset coverage
+In real estate, uncertainty matters. A pricing workflow is more useful when it shows a lower bound, a central estimate,
+and an upper bound that teams can use for negotiation, screening, and manual review.
 
-- Raw data available in the repository: January 2017 to June 2024
-- Modeling window used by the production pipeline: January 2020 to June 2024
-- Default split:
-  - Train: January 2020 to June 2023
-  - Validation: July 2023 to December 2023
-  - Test: January 2024 to June 2024
+## What this project does
 
-## Project structure
+- Uses HDB resale transactions from 2020 to 2024
+- Combines property features with a Singapore housing price index
+- Builds leakage-safe historical market features by town and street
+- Trains quantile regression models for P10, P50, and P90 price estimates
+- Evaluates performance with time-based validation and test splits
 
-```text
-.
-├── data/
-│   └── raw/
-├── reports/
-├── scripts/
-├── src/singapore_house_pricing/
-└── tests/
-```
+## Why it matters for the business
 
-Generated directories such as `data/processed/`, `models/`, and `reports/` are created automatically
-when you run the pipeline.
+- A valuation band is more useful than a single number for negotiation and risk management
+- Wider predicted intervals can signal listings that need analyst review
+- Time-based evaluation shows how the model behaves in future market conditions, not only on random historical samples
 
-## Quickstart
+## Full-run results
 
-The simplest way to run everything from setup to results is:
+The current artifacts in this repository were generated from the full dataset run.
+
+| Split | MAE | MAPE | Coverage | Mean interval width |
+| --- | ---: | ---: | ---: | ---: |
+| Validation | SGD 76,372 | 11.44% | 80.63% | SGD 260,048 |
+| Test | SGD 89,579 | 13.05% | 74.30% | SGD 261,070 |
+
+## Business interpretation
+
+- The model's central estimate stays within roughly 11% to 13% of the final sale price on average, which is useful for pricing support and shortlist ranking.
+- Validation coverage is close to the expected 80% interval behavior, so the prediction bands are directionally reliable in stable periods.
+- Test coverage falls to about 74% in the out-of-time 2024 window, which suggests market drift and supports regular retraining.
+- The average interval width is around SGD 260k, so this model should be used as decision support, not as a fully automated final valuation engine.
+- Listings with especially wide intervals are good candidates for manual analyst review.
+
+## Example outputs
+
+Validation sample:
+
+![Validation prediction intervals](reports/figures/validation_prediction_intervals.png)
+
+Test sample:
+
+![Test prediction intervals](reports/figures/test_prediction_intervals.png)
+
+## How to run
+
+Run the complete project from setup to outputs with:
 
 ```bash
 ./scripts/run_project.sh --full
 ```
 
-This command will create `.venv`, install dependencies, prepare the data, train the model on a smoke-test
-sample, and print the summary at the end.
+For a faster smoke test:
 
-## Outputs
+```bash
+./scripts/run_project.sh
+```
 
-Running the pipeline creates:
+## Generated artifacts
+
+After execution, the project creates:
 
 - `data/processed/sg_resale_flat_prices_engineered.csv`
 - `data/processed/features_list.json`
@@ -57,15 +78,3 @@ Running the pipeline creates:
 - `reports/predictions.csv`
 - `reports/project_summary.md`
 - `reports/figures/*.png`
-
-## Modeling approach
-
-1. Load raw transactions and the quarterly housing price index.
-2. Engineer leakage-safe features:
-   - lease duration features
-   - storey midpoint
-   - market index and inflation adjustment factor
-   - rolling historical price-per-square-meter signals by town and street
-3. Train three quantile gradient boosting models for the 10th, 50th, and 90th percentiles.
-4. Evaluate on out-of-time validation and test windows.
-5. Save plots, metrics, predictions, and serialized models.

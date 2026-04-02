@@ -2,18 +2,18 @@
   "generated_at": "2026-04-01T22:58:34.080200+00:00",
   "config": {
     "paths": {
-      "project_dir": "/Users/pmusachio/REPOS/singapore-house-pricing",
-      "raw_transactions": "/Users/pmusachio/REPOS/singapore-house-pricing/data/raw/sg-resale-flat-prices-2017-onwards.csv",
-      "raw_price_index": "/Users/pmusachio/REPOS/singapore-house-pricing/data/raw/sg_price_index.csv",
-      "processed_dataset": "/Users/pmusachio/REPOS/singapore-house-pricing/data/processed/sg_resale_flat_prices_engineered.csv",
-      "features_path": "/Users/pmusachio/REPOS/singapore-house-pricing/data/processed/features_list.json",
-      "models_dir": "/Users/pmusachio/REPOS/singapore-house-pricing/models",
-      "reports_dir": "/Users/pmusachio/REPOS/singapore-house-pricing/reports",
-      "figures_dir": "/Users/pmusachio/REPOS/singapore-house-pricing/reports/figures",
-      "metrics_path": "/Users/pmusachio/REPOS/singapore-house-pricing/reports/metrics.json",
-      "predictions_path": "/Users/pmusachio/REPOS/singapore-house-pricing/reports/predictions.csv",
-      "summary_path": "/Users/pmusachio/REPOS/singapore-house-pricing/reports/project_summary.md",
-      "model_metadata_path": "/Users/pmusachio/REPOS/singapore-house-pricing/models/model_metadata.json"
+      "project_dir": ".",
+      "raw_transactions": "data/raw/sg-resale-flat-prices-2017-onwards.csv",
+      "raw_price_index": "data/raw/sg_price_index.csv",
+      "processed_dataset": "data/processed/sg_resale_flat_prices_engineered.csv",
+      "features_path": "data/processed/features_list.json",
+      "models_dir": "models",
+      "reports_dir": "reports",
+      "figures_dir": "reports/figures",
+      "metrics_path": "reports/metrics.json",
+      "predictions_path": "reports/predictions.csv",
+      "summary_path": "reports/project_summary.md",
+      "model_metadata_path": "models/model_metadata.json"
     },
     "split": {
       "train_end": "2023-07-01",
@@ -100,9 +100,9 @@
   ],
   "sample_rows": null,
   "model_files": {
-    "q10": "/Users/pmusachio/REPOS/singapore-house-pricing/models/quantile_10.joblib",
-    "q50": "/Users/pmusachio/REPOS/singapore-house-pricing/models/quantile_50.joblib",
-    "q90": "/Users/pmusachio/REPOS/singapore-house-pricing/models/quantile_90.joblib"
+    "q10": "models/quantile_10.joblib",
+    "q50": "models/quantile_50.joblib",
+    "q90": "models/quantile_90.joblib"
   },
   "split_sizes": {
     "train": 92080,

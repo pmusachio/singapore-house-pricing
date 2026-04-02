@@ -105,7 +105,7 @@ def train_pipeline(
         suffix = int(round(quantile * 100))
         model_path = paths.models_dir / f"quantile_{suffix:02d}.joblib"
         joblib.dump(model, model_path)
-        model_files[f"q{suffix:02d}"] = str(model_path)
+        model_files[f"q{suffix:02d}"] = str(model_path.relative_to(paths.project_dir))
 
     split_sizes = {name: int(len(frame)) for name, frame in split_frames.items()}
     metrics_bundle = {
